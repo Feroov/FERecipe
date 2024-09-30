@@ -18,51 +18,26 @@
     <main class="container">
         <!-- Recipe List -->
         <section id="recipe-list" class="recipe-grid">
-            <article class="recipe-card">
-                <img src="https://img.taste.com.au/sE-X5HqY/taste/2024/03/5-ingredient-turbo-charged-spaghetti-recipe-196959-1.jpg" alt="Simple Spaghetti" class="recipe-image">
-                <div class="recipe-content">
-                    <h2 class="recipe-title">Simple Spaghetti</h2>
-                    <p class="recipe-description">A quick and easy spaghetti recipe perfect for busy weeknights.</p>
-                    <div class="recipe-meta">
-                        <span>Prep time: 15 mins</span>
-                        <span>Servings: 4</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="recipe-card">
-                <img src="https://www.dontgobaconmyheart.co.uk/wp-content/uploads/2018/04/delicious-and-easy-chicken-noodle-stir-fry-13.jpg" alt="Chicken Stir Fry" class="recipe-image">
-                <div class="recipe-content">
-                    <h2 class="recipe-title">Chicken Stir Fry</h2>
-                    <p class="recipe-description">A quick and healthy Asian-inspired dinner option.</p>
-                    <div class="recipe-meta">
-                        <span>Prep time: 20 mins</span>
-                        <span>Servings: 3</span>
-                    </div>
-                </div>
-            </article>
+            <!-- Recipe cards will be dynamically populated here -->
         </section>
 
         <!-- Recipe Detail -->
         <section id="recipe-detail" class="recipe-page" style="display: none;">
             <button id="back-button" class="back-button">Back to Recipes</button>
-            <h2 id="recipeTitle">Recipe Title</h2>
+            <h2 id="recipeTitle" data-recipe-id=""></h2>
             <img id="recipeImage" src="" alt="Recipe Image">
             
             <section class="ingredients">
                 <h3>Ingredients</h3>
-                <ul id="recipeIngredients">
-                    <!-- Ingredients will be populated here -->
-                </ul>
+                <ul id="recipeIngredients"></ul>
             </section>
             
             <section class="instructions">
                 <h3>Instructions</h3>
-                <ol id="recipeInstructions">
-                    <!-- Instructions will be populated here -->
-                </ol>
+                <ol id="recipeInstructions"></ol>
             </section>
 
+            <!-- Comments Section -->
             <section class="comments-section">
                 <h3>Comments</h3>
                 <form id="commentForm" class="comment-form">
@@ -88,5 +63,7 @@
             <p>&copy; 2023 Delicious Recipes. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

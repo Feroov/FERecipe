@@ -1,9 +1,6 @@
-const repoOwner = 'Feroov'; // Replace with your GitHub username
-const repoName = 'FERecipe'; // Replace with your GitHub repository name
-const githubApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/issues`;
-const recipeUrl = 'recipe.json'; // Path to recipe JSON file
-
+const recipeUrl = 'recipes.json'; // Path to recipe JSON file
 let recipes = [];
+let commentsStore = {}; // In-memory storage for comments
 
 // Fetch and display recipes
 async function fetchRecipes() {
@@ -25,7 +22,7 @@ function displayRecipeList() {
   const recipeList = document.getElementById('recipe-list');
   recipeList.innerHTML = '';
 
-  recipes.forEach(recipe => {
+  recipes.forEach((recipe) => {
     const recipeCard = document.createElement('article');
     recipeCard.classList.add('recipe-card');
     recipeCard.innerHTML = `
@@ -44,7 +41,7 @@ function displayRecipeList() {
   });
 
   // Add event listeners for "View Recipe" links
-  document.querySelectorAll('.view-recipe').forEach(link => {
+  document.querySelectorAll('.view-recipe').forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const recipeId = e.target.getAttribute('href').substring(1);
@@ -55,7 +52,7 @@ function displayRecipeList() {
 
 // Display detailed view of a recipe
 function displayRecipeDetail(recipeId) {
-  const recipe = recipes.find(r => r.id === recipeId);
+  const recipe = recipes.find((r) => r.id === recipeId);
   if (!recipe) return;
 
   document.getElementById('recipe-list').style.display = 'none'; // Hide recipe list
@@ -63,13 +60,14 @@ function displayRecipeDetail(recipeId) {
   recipeDetail.style.display = 'block'; // Show recipe detail
 
   document.getElementById('recipeTitle').innerText = recipe.title;
+  document.getElementById('recipeTitle').setAttribute('data-recipe-id', recipe.id);
   document.getElementById('recipeImage').src = recipe.image;
   document.getElementById('recipeImage').alt = recipe.title;
 
   // Populate ingredients
   const ingredientsList = document.getElementById('recipeIngredients');
   ingredientsList.innerHTML = '';
-  recipe.ingredients.forEach(ingredient => {
+  recipe.ingredients.forEach((ingredient) => {
     const li = document.createElement('li');
     li.textContent = ingredient;
     ingredientsList.appendChild(li);
@@ -78,20 +76,15 @@ function displayRecipeDetail(recipeId) {
   // Populate instructions
   const instructionsList = document.getElementById('recipeInstructions');
   instructionsList.innerHTML = '';
-  recipe.instructions.forEach(instruction => {
+  recipe.instructions.forEach((instruction) => {
     const li = document.createElement('li');
     li.textContent = instruction;
     instructionsList.appendChild(li);
   });
 
   // Fetch and display comments for this recipe
-  fetchComments(recipeId);
-
-  // Update the comment form to use the current recipe ID
-  const commentForm = document.getElementById('commentForm');
-  commentForm.onsubmit = (e) => redirectToGitHubIssue(e, recipeId);
+  displayComments(recipeId);
 }
-
 
 // Back to recipe list view
 function backToRecipeList() {
@@ -99,104 +92,63 @@ function backToRecipeList() {
   document.getElementById('recipe-list').style.display = 'grid'; // Show recipe list
 }
 
-// Fetch and display comments for the current recipe
-async function fetchComments(recipeId) {
-  const commentsSection = document.getElementById('comments');
-  commentsSection.innerHTML = '<p>Loading comments...</p>';
+// Add a comment to the in-memory store
+function addComment(e, recipeId) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const commentText = document.getElementById('comment').value;
 
-  try {
-    const response = await fetch(`/api/comments?recipeId=${recipeId}`);
-    if (!response.ok) {
-      throw new Error('Failed to load comments');
-    }
-
-    const comments = await response.json();
-    commentsSection.innerHTML = '';
-    if (comments.length === 0) {
-      commentsSection.innerHTML = '<p>No comments yet. Be the first to comment!</p>';
-    } else {
-      comments.forEach(comment => displayComment(comment, commentsSection));
-    }
-  } catch (error) {
-    console.error('Error fetching comments:', error);
-    commentsSection.innerHTML = '<p>Failed to load comments. Please try again later.</p>';
-  }
-}
-
-async function addComment(event, recipeId) {
-  event.preventDefault();
-
-  const name = document.getElementById('name').value.trim();
-  const comment = document.getElementById('comment').value.trim();
-
-  if (!name || !comment) {
-    alert('Please fill in both your name and comment.');
+  if (!name || !commentText) {
+    alert('Please enter both your name and comment.');
     return;
   }
 
+  // Create a new comment
   const newComment = {
-    name,
-    comment,
-    recipeId,
+    name: name,
+    commentText: commentText,
+    date: new Date().toLocaleDateString(),
   };
 
-  try {
-    const response = await fetch('/api/comments', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newComment),
+  // Store comment in in-memory storage
+  if (!commentsStore[recipeId]) {
+    commentsStore[recipeId] = [];
+  }
+  commentsStore[recipeId].push(newComment);
+
+  // Display updated comments
+  displayComments(recipeId);
+
+  // Reset form
+  document.getElementById('commentForm').reset();
+}
+
+// Display comments for the specific recipe
+function displayComments(recipeId) {
+  const commentsSection = document.getElementById('comments');
+  commentsSection.innerHTML = ''; // Clear current comments
+  const comments = commentsStore[recipeId] || [];
+
+  if (comments.length === 0) {
+    commentsSection.innerHTML = '<p>No comments yet. Be the first to comment!</p>';
+  } else {
+    comments.forEach((comment) => {
+      const commentElement = document.createElement('div');
+      commentElement.classList.add('comment-item');
+      commentElement.innerHTML = `
+        <p class="comment-author">${comment.name} <span class="comment-date">(${comment.date})</span></p>
+        <p>${comment.commentText}</p>
+      `;
+      commentsSection.appendChild(commentElement);
     });
-
-    if (!response.ok) {
-      throw new Error('Failed to add comment');
-    }
-
-    // Refresh comments after successful submission
-    fetchComments(recipeId);
-  } catch (error) {
-    console.error('Error adding comment:', error);
   }
 }
 
-
-// Display individual comment
-function displayComment(comment, container) {
-  const commentElement = document.createElement('div');
-  commentElement.classList.add('comment-item');
-  commentElement.innerHTML = `
-    <p class="comment-author">${sanitizeHTML(comment.user.login)}</p>
-    <p class="comment-date">${new Date(comment.created_at).toLocaleDateString()}</p>
-    <p>${sanitizeHTML(comment.body)}</p>
-  `;
-  container.appendChild(commentElement);
-}
-
-// Sanitize HTML to prevent XSS
-function sanitizeHTML(str) {
-  const tempDiv = document.createElement('div');
-  tempDiv.textContent = str;
-  return tempDiv.innerHTML;
-}
-
-// Redirect to GitHub to create a new issue (comment)
-function redirectToGitHubIssue(event, recipeId) {
-  event.preventDefault();
-
-  const name = document.getElementById('name').value.trim();
-  const comment = document.getElementById('comment').value.trim();
-  if (!name || !comment) {
-    alert('Please fill in both your name and comment.');
-    return;
-  }
-
-  // Include the recipe ID in the issue title to link the comment with the recipe
-  const issueTitle = encodeURIComponent(`Comment on ${recipeId} by ${name}`);
-  const issueBody = encodeURIComponent(comment);
-  const githubIssueUrl = `https://github.com/${repoOwner}/${repoName}/issues/new?title=${issueTitle}&body=${issueBody}`;
-
-  window.open(githubIssueUrl, '_blank');
-}
-
+// Hook up the comment form submission
+document.getElementById('commentForm').addEventListener('submit', (e) => {
+  const recipeId = document.getElementById('recipeTitle').getAttribute('data-recipe-id');
+  addComment(e, recipeId);
+});
 
 // Initialize the page: fetch recipes and set up event listeners
 window.onload = () => {
