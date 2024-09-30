@@ -1,4 +1,4 @@
-const recipeUrl = 'recipes.json'; // Path to recipe JSON file
+const recipeUrl = 'recipe.json'; // Path to recipe JSON file
 let recipes = [];
 let commentsStore = {}; // In-memory storage for comments
 
