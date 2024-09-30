@@ -1,5 +1,6 @@
-const recipeUrl = 'recipe.json'; // Path to recipe JSON file
+const recipeUrl = 'recipes.json'; // Path to recipe JSON file
 let recipes = [];
+let commentsStore = {}; // In-memory storage for comments
 
 // Fetch and display recipes
 async function fetchRecipes() {
@@ -82,83 +83,72 @@ function displayRecipeDetail(recipeId) {
   });
 
   // Fetch and display comments for this recipe
-  fetchComments(recipeId);
+  displayComments(recipeId);
 }
 
-// Fetch comments for the specific recipe from the server
-async function fetchComments(recipeId) {
-  const commentsSection = document.getElementById('comments');
-  commentsSection.innerHTML = '<p>Loading comments...</p>';
-  
-  try {
-    const response = await fetch(`/api/comments?recipeId=${recipeId}`);
-    if (!response.ok) {
-      throw new Error('Failed to load comments');
-    }
-
-    const comments = await response.json();
-    commentsSection.innerHTML = ''; // Clear current comments
-
-    if (comments.length === 0) {
-      commentsSection.innerHTML = '<p>No comments yet. Be the first to comment!</p>';
-    } else {
-      comments.forEach(comment => displayComment(comment, commentsSection));
-    }
-  } catch (error) {
-    commentsSection.innerHTML = '<p>Failed to load comments. Please try again later.</p>';
-    console.error('Error fetching comments:', error);
-  }
+// Back to recipe list view
+function backToRecipeList() {
+  document.getElementById('recipe-detail').style.display = 'none'; // Hide recipe detail
+  document.getElementById('recipe-list').style.display = 'grid'; // Show recipe list
 }
 
-// Display individual comment
-function displayComment(comment, container) {
-  const commentElement = document.createElement('div');
-  commentElement.classList.add('comment-item');
-  commentElement.innerHTML = `
-    <p class="comment-author">${comment.name} <span class="comment-date">(${new Date(comment.date).toLocaleDateString()})</span></p>
-    <p>${comment.comment}</p>
-  `;
-  container.appendChild(commentElement);
-}
-
-// Add a new comment via the API
-async function addComment(e) {
+// Add a comment to the in-memory store
+function addComment(e, recipeId) {
   e.preventDefault();
-  
   const name = document.getElementById('name').value;
   const commentText = document.getElementById('comment').value;
-  const recipeId = document.getElementById('recipeTitle').getAttribute('data-recipe-id');
-  
+
   if (!name || !commentText) {
-    alert('Please fill in both your name and comment.');
+    alert('Please enter both your name and comment.');
     return;
   }
 
-  const newComment = { name, comment: commentText, recipeId };
+  // Create a new comment
+  const newComment = {
+    name: name,
+    commentText: commentText,
+    date: new Date().toLocaleDateString(),
+  };
 
-  try {
-    const response = await fetch('/api/comments', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newComment),
+  // Store comment in in-memory storage
+  if (!commentsStore[recipeId]) {
+    commentsStore[recipeId] = [];
+  }
+  commentsStore[recipeId].push(newComment);
+
+  // Display updated comments
+  displayComments(recipeId);
+
+  // Reset form
+  document.getElementById('commentForm').reset();
+}
+
+// Display comments for the specific recipe
+function displayComments(recipeId) {
+  const commentsSection = document.getElementById('comments');
+  commentsSection.innerHTML = ''; // Clear current comments
+  const comments = commentsStore[recipeId] || [];
+
+  if (comments.length === 0) {
+    commentsSection.innerHTML = '<p>No comments yet. Be the first to comment!</p>';
+  } else {
+    comments.forEach((comment) => {
+      const commentElement = document.createElement('div');
+      commentElement.classList.add('comment-item');
+      commentElement.innerHTML = `
+        <p class="comment-author">${comment.name} <span class="comment-date">(${comment.date})</span></p>
+        <p>${comment.commentText}</p>
+      `;
+      commentsSection.appendChild(commentElement);
     });
-
-    if (!response.ok) {
-      throw new Error('Failed to add comment');
-    }
-
-    // Refresh comments after successful submission
-    fetchComments(recipeId);
-
-    // Reset form
-    document.getElementById('commentForm').reset();
-  } catch (error) {
-    console.error('Error adding comment:', error);
   }
 }
 
 // Hook up the comment form submission
-document.getElementById('commentForm').addEventListener('submit', addComment);
+document.getElementById('commentForm').addEventListener('submit', (e) => {
+  const recipeId = document.getElementById('recipeTitle').getAttribute('data-recipe-id');
+  addComment(e, recipeId);
+});
 
 // Initialize the page: fetch recipes and set up event listeners
 window.onload = () => {
