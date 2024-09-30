@@ -1,55 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recipe Page with Comments</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicious Recipes Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
     <header>
-      <h1>Simple Spaghetti Recipe</h1>
+        <div class="container">
+            <h1>Delicious Recipes</h1>
+            <p>Explore our collection of mouthwatering dishes</p>
+        </div>
     </header>
 
-    <!-- Recipe Section -->
-    <section class="recipe">
-      <h2>Ingredients</h2>
-      <ul>
-        <li>Spaghetti - 200g</li>
-        <li>Tomato Sauce - 1 cup</li>
-        <li>Garlic - 2 cloves (minced)</li>
-        <li>Fresh Basil - 5 leaves</li>
-      </ul>
+    <main class="container">
+        <!-- Recipe List -->
+        <section id="recipe-list" class="recipe-grid">
+            <!-- Recipe cards will be dynamically populated here -->
+        </section>
 
-      <h2>Instructions</h2>
-      <ol>
-        <li>Boil spaghetti in salted water until al dente.</li>
-        <li>Sauté garlic in olive oil until fragrant.</li>
-        <li>Add tomato sauce and simmer for 5 minutes.</li>
-        <li>Toss spaghetti with sauce and garnish with fresh basil.</li>
-      </ol>
-    </section>
+        <!-- Recipe Detail -->
+        <section id="recipe-detail" class="recipe-page" style="display: none;">
+            <button id="back-button" class="back-button">Back to Recipes</button>
+            <h2 id="recipeTitle"></h2>
+            <img id="recipeImage" src="" alt="Recipe Image">
+            
+            <section class="ingredients">
+                <h3>Ingredients</h3>
+                <ul id="recipeIngredients"></ul>
+            </section>
+            
+            <section class="instructions">
+                <h3>Instructions</h3>
+                <ol id="recipeInstructions"></ol>
+            </section>
 
-    <!-- Comment Section -->
-    <section class="comments-section">
-      <h2>Comments</h2>
-      <div id="comments">
-        <p>Loading comments...</p>
-      </div>
+            <section class="comments-section">
+                <h3>Comments</h3>
+                <form id="commentForm" class="comment-form" onsubmit="redirectToGitHubIssue(event)">
+                    <div class="form-group">
+                        <label for="name">Your Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Your Comment:</label>
+                        <textarea id="comment" name="comment" required></textarea>
+                    </div>
+                    <button type="submit">Post Comment</button>
+                </form>
+                <div id="comments">
+                    <!-- Comments will be dynamically populated here -->
+                </div>
+            </section>
+        </section>
+    </main>
 
-      <!-- Link to submit a comment via GitHub Issues -->
-      <div class="submit-comment">
-        <a
-          href="https://github.com/Feroov/FERecipe/issues/new"
-          target="_blank"
-          class="comment-button"
-          >Submit a Comment</a
-        >
-      </div>
-    </section>
-  </div>
-
-  <script src="script.js"></script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Delicious Recipes. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>

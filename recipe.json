@@ -1,0 +1,63 @@
+{
+    "recipes": [
+      {
+        "id": "simple-spaghetti",
+        "title": "Simple Spaghetti",
+        "image": "https://img.taste.com.au/sE-X5HqY/taste/2024/03/5-ingredient-turbo-charged-spaghetti-recipe-196959-1.jpg",
+        "description": "A quick and easy spaghetti recipe perfect for busy weeknights.",
+        "prepTime": "15 mins",
+        "servings": 4,
+        "ingredients": [
+          "Spaghetti - 400g",
+          "Tomato Sauce - 2 cups",
+          "Garlic - 4 cloves (minced)",
+          "Fresh Basil - 10 leaves",
+          "Olive Oil - 2 tbsp",
+          "Salt - to taste",
+          "Black Pepper - to taste",
+          "Grated Parmesan Cheese - for serving"
+        ],
+        "instructions": [
+          "Bring a large pot of salted water to a boil and cook spaghetti according to package instructions until al dente.",
+          "While the pasta is cooking, heat olive oil in a large skillet over medium heat.",
+          "Add minced garlic and sauté until fragrant, about 1 minute.",
+          "Pour in the tomato sauce and simmer for 5 minutes, stirring occasionally.",
+          "Season the sauce with salt and black pepper to taste.",
+          "Drain the cooked spaghetti and add it to the skillet with the sauce.",
+          "Toss the spaghetti with the sauce until well coated.",
+          "Remove from heat and tear in the fresh basil leaves.",
+          "Serve hot, garnished with grated Parmesan cheese."
+        ]
+      },
+      {
+        "id": "chicken-stir-fry",
+        "title": "Chicken Stir Fry",
+        "image": "https://www.dontgobaconmyheart.co.uk/wp-content/uploads/2018/04/delicious-and-easy-chicken-noodle-stir-fry-13.jpg",
+        "description": "A quick and healthy Asian-inspired dinner option.",
+        "prepTime": "20 mins",
+        "servings": 3,
+        "ingredients": [
+          "Boneless Chicken Breast - 500g, sliced",
+          "Mixed Vegetables (bell peppers, broccoli, carrots) - 3 cups",
+          "Soy Sauce - 3 tbsp",
+          "Honey - 1 tbsp",
+          "Ginger - 1 tbsp, minced",
+          "Garlic - 2 cloves, minced",
+          "Vegetable Oil - 2 tbsp",
+          "Cornstarch - 1 tbsp",
+          "Water - 1/4 cup"
+        ],
+        "instructions": [
+          "In a small bowl, mix soy sauce, honey, and cornstarch. Set aside.",
+          "Heat oil in a large wok or skillet over high heat.",
+          "Add chicken and stir-fry until nearly cooked through, about 5 minutes.",
+          "Add ginger and garlic, stir-fry for 30 seconds until fragrant.",
+          "Add mixed vegetables and stir-fry for 3-4 minutes until crisp-tender.",
+          "Pour in the sauce mixture and water. Stir well to coat everything.",
+          "Cook for another 2-3 minutes until the sauce thickens and everything is heated through.",
+          "Serve hot over rice or noodles."
+        ]
+      }
+    ]
+  }
+  
