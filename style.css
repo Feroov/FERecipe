@@ -105,22 +105,6 @@ header p {
   margin-bottom: 15px;
 }
 
-.view-recipe {
-  display: inline-block;
-  background-color: var(--secondary-color);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.view-recipe:hover {
-  background-color: #45b7aa;
-}
-
 .recipe-page {
   background-color: var(--card-background);
   border-radius: 15px;
@@ -175,7 +159,6 @@ header p {
   margin-bottom: 10px;
 }
 
-/* Comments Section */
 .comments-section {
   margin-top: 60px;
 }
@@ -232,10 +215,6 @@ header p {
   background-color: #ff5252;
 }
 
-.comment-list {
-  list-style-type: none;
-}
-
 .comment-item {
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -255,7 +234,6 @@ header p {
   margin-bottom: 10px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .recipe-grid {
     grid-template-columns: 1fr;

@@ -105,16 +105,12 @@ async function fetchComments(recipeId) {
   commentsSection.innerHTML = '<p>Loading comments...</p>';
 
   try {
-    const response = await fetch(githubApiUrl);
+    const response = await fetch(`/api/comments?recipeId=${recipeId}`);
     if (!response.ok) {
-      throw new Error(`GitHub API error: ${response.status}`);
+      throw new Error('Failed to load comments');
     }
 
-    const issues = await response.json();
-
-    // Filter comments to only include those related to the current recipe
-    const comments = issues.filter(issue => issue.title.includes(recipeId) && !issue.pull_request);
-
+    const comments = await response.json();
     commentsSection.innerHTML = '';
     if (comments.length === 0) {
       commentsSection.innerHTML = '<p>No comments yet. Be the first to comment!</p>';
@@ -124,6 +120,41 @@ async function fetchComments(recipeId) {
   } catch (error) {
     console.error('Error fetching comments:', error);
     commentsSection.innerHTML = '<p>Failed to load comments. Please try again later.</p>';
+  }
+}
+
+async function addComment(event, recipeId) {
+  event.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const comment = document.getElementById('comment').value.trim();
+
+  if (!name || !comment) {
+    alert('Please fill in both your name and comment.');
+    return;
+  }
+
+  const newComment = {
+    name,
+    comment,
+    recipeId,
+  };
+
+  try {
+    const response = await fetch('/api/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newComment),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to add comment');
+    }
+
+    // Refresh comments after successful submission
+    fetchComments(recipeId);
+  } catch (error) {
+    console.error('Error adding comment:', error);
   }
 }
 
