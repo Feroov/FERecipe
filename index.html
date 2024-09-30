@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Page with Comments</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Simple Spaghetti Recipe</h1>
+    </header>
+
+    <!-- Recipe Section -->
+    <section class="recipe">
+      <h2>Ingredients</h2>
+      <ul>
+        <li>Spaghetti - 200g</li>
+        <li>Tomato Sauce - 1 cup</li>
+        <li>Garlic - 2 cloves (minced)</li>
+        <li>Fresh Basil - 5 leaves</li>
+      </ul>
+
+      <h2>Instructions</h2>
+      <ol>
+        <li>Boil spaghetti in salted water until al dente.</li>
+        <li>Sauté garlic in olive oil until fragrant.</li>
+        <li>Add tomato sauce and simmer for 5 minutes.</li>
+        <li>Toss spaghetti with sauce and garnish with fresh basil.</li>
+      </ol>
+    </section>
+
+    <!-- Comment Section -->
+    <section class="comments-section">
+      <h2>Comments</h2>
+      <div id="comments">
+        <p>Loading comments...</p>
+      </div>
+
+      <!-- Link to submit a comment via GitHub Issues -->
+      <div class="submit-comment">
+        <a
+          href="https://github.com/your-username/your-repository/issues/new"
+          target="_blank"
+          class="comment-button"
+          >Submit a Comment</a
+        >
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

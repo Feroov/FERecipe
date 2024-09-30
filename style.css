@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+    color: #e74c3c;
+    margin-bottom: 10px;
+  }
+  
+  ul,
+  ol {
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
+  
+  .recipe li {
+    margin-bottom: 10px;
+  }
+  
+  .comments-section {
+    margin-top: 40px;
+  }
+  
+  #comments {
+    margin-bottom: 20px;
+  }
+  
+  .comment-item {
+    background-color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .comment-item h4 {
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: #3498db;
+  }
+  
+  .comment-item p {
+    font-size: 1em;
+  }
+  
+  .submit-comment {
+    text-align: center;
+  }
+  
+  .comment-button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .comment-button:hover {
+    background-color: #2980b9;
+  }
+  
