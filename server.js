@@ -60,6 +60,24 @@ app.get('/recipes/:recipeId/comments', async (req, res) => {
   }
 });
 
+// DELETE: Delete a comment by its ID
+app.delete('/comments/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const comment = await Comment.findByPk(id); // Find the comment by its ID
+    if (!comment) {
+      return res.status(404).json({ error: 'Comment not found' });
+    }
+
+    await comment.destroy(); // Delete the comment
+    res.status(200).json({ message: 'Comment deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete comment' });
+  }
+});
+
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
