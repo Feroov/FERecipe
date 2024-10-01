@@ -1,63 +1,450 @@
 {
-    "recipes": [
-      {
-        "id": "simple-spaghetti",
-        "title": "Simple Spaghetti",
-        "image": "https://img.taste.com.au/sE-X5HqY/taste/2024/03/5-ingredient-turbo-charged-spaghetti-recipe-196959-1.jpg",
-        "description": "A quick and easy spaghetti recipe perfect for busy weeknights.",
-        "prepTime": "15 mins",
-        "servings": 4,
-        "ingredients": [
-          "Spaghetti - 400g",
-          "Tomato Sauce - 2 cups",
-          "Garlic - 4 cloves (minced)",
-          "Fresh Basil - 10 leaves",
-          "Olive Oil - 2 tbsp",
-          "Salt - to taste",
-          "Black Pepper - to taste",
-          "Grated Parmesan Cheese - for serving"
-        ],
-        "instructions": [
-          "Bring a large pot of salted water to a boil and cook spaghetti according to package instructions until al dente.",
-          "While the pasta is cooking, heat olive oil in a large skillet over medium heat.",
-          "Add minced garlic and sauté until fragrant, about 1 minute.",
-          "Pour in the tomato sauce and simmer for 5 minutes, stirring occasionally.",
-          "Season the sauce with salt and black pepper to taste.",
-          "Drain the cooked spaghetti and add it to the skillet with the sauce.",
-          "Toss the spaghetti with the sauce until well coated.",
-          "Remove from heat and tear in the fresh basil leaves.",
-          "Serve hot, garnished with grated Parmesan cheese."
-        ]
-      },
-      {
-        "id": "chicken-stir-fry",
-        "title": "Chicken Stir Fry",
-        "image": "https://www.dontgobaconmyheart.co.uk/wp-content/uploads/2018/04/delicious-and-easy-chicken-noodle-stir-fry-13.jpg",
-        "description": "A quick and healthy Asian-inspired dinner option.",
-        "prepTime": "20 mins",
-        "servings": 3,
-        "ingredients": [
-          "Boneless Chicken Breast - 500g, sliced",
-          "Mixed Vegetables (bell peppers, broccoli, carrots) - 3 cups",
-          "Soy Sauce - 3 tbsp",
-          "Honey - 1 tbsp",
-          "Ginger - 1 tbsp, minced",
-          "Garlic - 2 cloves, minced",
-          "Vegetable Oil - 2 tbsp",
-          "Cornstarch - 1 tbsp",
-          "Water - 1/4 cup"
-        ],
-        "instructions": [
-          "In a small bowl, mix soy sauce, honey, and cornstarch. Set aside.",
-          "Heat oil in a large wok or skillet over high heat.",
-          "Add chicken and stir-fry until nearly cooked through, about 5 minutes.",
-          "Add ginger and garlic, stir-fry for 30 seconds until fragrant.",
-          "Add mixed vegetables and stir-fry for 3-4 minutes until crisp-tender.",
-          "Pour in the sauce mixture and water. Stir well to coat everything.",
-          "Cook for another 2-3 minutes until the sauce thickens and everything is heated through.",
-          "Serve hot over rice or noodles."
-        ]
-      }
-    ]
-  }
-  
+  "recipes": [
+    {
+      "id": "simple-spaghetti",
+      "title": "Simple Spaghetti",
+      "image": "https://img.taste.com.au/sE-X5HqY/taste/2024/03/5-ingredient-turbo-charged-spaghetti-recipe-196959-1.jpg",
+      "description": "A quick and easy spaghetti recipe perfect for busy weeknights.",
+      "prepTime": "15 mins",
+      "servings": 4,
+      "ingredients": [
+        "Spaghetti - 400g",
+        "Tomato Sauce - 2 cups",
+        "Garlic - 4 cloves (minced)",
+        "Fresh Basil - 10 leaves",
+        "Olive Oil - 2 tbsp",
+        "Salt - to taste",
+        "Black Pepper - to taste",
+        "Grated Parmesan Cheese - for serving"
+      ],
+      "instructions": [
+        "Bring a large pot of salted water to a boil and cook spaghetti according to package instructions until al dente.",
+        "While the pasta is cooking, heat olive oil in a large skillet over medium heat.",
+        "Add minced garlic and sauté until fragrant, about 1 minute.",
+        "Pour in the tomato sauce and simmer for 5 minutes, stirring occasionally.",
+        "Season the sauce with salt and black pepper to taste.",
+        "Drain the cooked spaghetti and add it to the skillet with the sauce.",
+        "Toss the spaghetti with the sauce until well coated.",
+        "Remove from heat and tear in the fresh basil leaves.",
+        "Serve hot, garnished with grated Parmesan cheese."
+      ]
+    },
+    {
+      "id": "chicken-stir-fry",
+      "title": "Chicken Stir Fry",
+      "image": "https://www.dontgobaconmyheart.co.uk/wp-content/uploads/2018/04/delicious-and-easy-chicken-noodle-stir-fry-13.jpg",
+      "description": "A quick and healthy Asian-inspired dinner option.",
+      "prepTime": "20 mins",
+      "servings": 3,
+      "ingredients": [
+        "Boneless Chicken Breast - 500g, sliced",
+        "Mixed Vegetables (bell peppers, broccoli, carrots) - 3 cups",
+        "Soy Sauce - 3 tbsp",
+        "Honey - 1 tbsp",
+        "Ginger - 1 tbsp, minced",
+        "Garlic - 2 cloves, minced",
+        "Vegetable Oil - 2 tbsp",
+        "Cornstarch - 1 tbsp",
+        "Water - 1/4 cup"
+      ],
+      "instructions": [
+        "In a small bowl, mix soy sauce, honey, and cornstarch. Set aside.",
+        "Heat oil in a large wok or skillet over high heat.",
+        "Add chicken and stir-fry until nearly cooked through, about 5 minutes.",
+        "Add ginger and garlic, stir-fry for 30 seconds until fragrant.",
+        "Add mixed vegetables and stir-fry for 3-4 minutes until crisp-tender.",
+        "Pour in the sauce mixture and water. Stir well to coat everything.",
+        "Cook for another 2-3 minutes until the sauce thickens and everything is heated through.",
+        "Serve hot over rice or noodles."
+      ]
+    },
+    {
+      "id": "beef-tacos",
+      "title": "Beef Tacos",
+      "image": "https://www.onceuponachef.com/images/2023/08/Beef-Tacos.jpg",
+      "description": "Tacos made with ground beef and delicious Mexican spices.",
+      "prepTime": "25 mins",
+      "servings": 6,
+      "ingredients": [
+        "Ground Beef - 500g",
+        "Taco Seasoning - 2 tbsp",
+        "Taco Shells - 12",
+        "Shredded Lettuce - 1 cup",
+        "Diced Tomatoes - 1 cup",
+        "Shredded Cheddar Cheese - 1 cup",
+        "Sour Cream - 1/2 cup",
+        "Salsa - 1/2 cup"
+      ],
+      "instructions": [
+        "In a large skillet over medium heat, cook ground beef until browned.",
+        "Drain excess fat and stir in taco seasoning and water as directed on the seasoning package.",
+        "Simmer for 5 minutes.",
+        "Warm taco shells according to package instructions.",
+        "Spoon beef mixture into taco shells and top with lettuce, tomatoes, cheese, sour cream, and salsa.",
+        "Serve immediately."
+      ]
+    },
+    {
+      "id": "grilled-salmon",
+      "title": "Grilled Salmon",
+      "image": "https://hips.hearstapps.com/hmg-prod/images/how-to-grill-salmon-recipe2-1655870552.jpg",
+      "description": "A simple grilled salmon recipe with lemon and herbs.",
+      "prepTime": "20 mins",
+      "servings": 4,
+      "ingredients": [
+        "Salmon Fillets - 4 (6 oz each)",
+        "Olive Oil - 2 tbsp",
+        "Garlic - 3 cloves (minced)",
+        "Fresh Dill - 1 tbsp",
+        "Lemon - 1 (sliced)",
+        "Salt - to taste",
+        "Black Pepper - to taste"
+      ],
+      "instructions": [
+        "Preheat grill to medium-high heat.",
+        "Brush both sides of the salmon fillets with olive oil.",
+        "Sprinkle minced garlic, dill, salt, and pepper on top of the salmon.",
+        "Place lemon slices on top of each fillet.",
+        "Grill salmon for about 5-6 minutes per side, or until it flakes easily with a fork.",
+        "Serve hot with a side of vegetables or salad."
+      ]
+    },
+    {
+      "id": "classic-burger",
+      "title": "Classic Beef Burger",
+      "image": "https://mezzarestaurants.com/wp-content/uploads/2023/03/DSC03724-scaled-1.jpg",
+      "description": "A juicy beef burger with all the classic toppings.",
+      "prepTime": "15 mins",
+      "servings": 4,
+      "ingredients": [
+        "Ground Beef - 500g",
+        "Salt - 1 tsp",
+        "Black Pepper - 1/2 tsp",
+        "Burger Buns - 4",
+        "Lettuce - 4 leaves",
+        "Sliced Tomato - 4 slices",
+        "Cheddar Cheese - 4 slices",
+        "Ketchup - 1/4 cup",
+        "Mayonnaise - 1/4 cup",
+        "Pickles - for serving"
+      ],
+      "instructions": [
+        "Preheat a grill or skillet over medium-high heat.",
+        "Form the ground beef into 4 equal-sized patties. Season with salt and pepper.",
+        "Grill the patties for about 4-5 minutes per side or until they reach your desired level of doneness.",
+        "Toast the burger buns lightly.",
+        "Assemble the burgers with lettuce, tomato, cheese, and condiments.",
+        "Serve hot with pickles and fries on the side."
+      ]
+    },
+    {
+      "id": "vegetarian-pizza",
+      "title": "Vegetarian Pizza",
+      "image": "https://www.goodlifeeats.com/wp-content/uploads/2022/06/Vegetarian-Pizza-720x540.jpg",
+      "description": "A delicious homemade vegetarian pizza topped with fresh vegetables and cheese.",
+      "prepTime": "30 mins",
+      "servings": 8,
+      "ingredients": [
+        "Pizza Dough - 1 (store-bought or homemade)",
+        "Pizza Sauce - 1/2 cup",
+        "Shredded Mozzarella Cheese - 2 cups",
+        "Sliced Bell Peppers - 1/2 cup",
+        "Sliced Red Onions - 1/4 cup",
+        "Sliced Mushrooms - 1/2 cup",
+        "Olives - 1/4 cup",
+        "Fresh Basil - for garnish"
+      ],
+      "instructions": [
+        "Preheat oven to 220°C (425°F).",
+        "Roll out the pizza dough on a floured surface to your desired thickness.",
+        "Spread the pizza sauce evenly over the dough.",
+        "Top with mozzarella cheese, bell peppers, onions, mushrooms, and olives.",
+        "Bake for 12-15 minutes or until the crust is golden and the cheese is bubbly.",
+        "Remove from the oven and garnish with fresh basil.",
+        "Slice and serve hot."
+      ]
+    },
+    {
+      "id": "chicken-parmesan",
+      "title": "Chicken Parmesan",
+      "image": "https://preppykitchen.com/wp-content/uploads/2018/10/Chicken-Parmesan-Recipe-n.jpg",
+      "description": "Crispy breaded chicken topped with marinara sauce and melted mozzarella cheese.",
+      "prepTime": "35 mins",
+      "servings": 4,
+      "ingredients": [
+        "Boneless Chicken Breasts - 4 (pounded to 1/2-inch thickness)",
+        "Breadcrumbs - 1 cup",
+        "Parmesan Cheese - 1/2 cup (grated)",
+        "Eggs - 2 (beaten)",
+        "Marinara Sauce - 2 cups",
+        "Mozzarella Cheese - 1 1/2 cups (shredded)",
+        "Olive Oil - for frying",
+        "Salt and Pepper - to taste"
+      ],
+      "instructions": [
+        "Preheat oven to 180°C (350°F).",
+        "In a shallow bowl, combine breadcrumbs and Parmesan cheese.",
+        "Dip each chicken breast in beaten eggs, then coat with the breadcrumb mixture.",
+        "Heat olive oil in a large skillet over medium heat. Fry the chicken until golden brown on both sides.",
+        "Place fried chicken in a baking dish. Top each piece with marinara sauce and mozzarella cheese.",
+        "Bake for 15-20 minutes or until the cheese is melted and bubbly.",
+        "Serve hot with pasta or salad."
+      ]
+    },
+    {
+      "id": "chocolate-chip-cookies",
+      "title": "Chocolate Chip Cookies",
+      "image": "https://static01.nyt.com/images/2022/02/12/dining/JT-Chocolate-Chip-Cookies/JT-Chocolate-Chip-Cookies-square640.jpg",
+      "description": "Classic chewy chocolate chip cookies.",
+      "prepTime": "30 mins",
+      "servings": 24,
+      "ingredients": [
+        "Butter - 1 cup (softened)",
+        "White Sugar - 1 cup",
+        "Brown Sugar - 1 cup",
+        "Vanilla Extract - 1 tsp",
+        "Eggs - 2",
+        "All-purpose Flour - 3 cups",
+        "Baking Soda - 1 tsp",
+        "Salt - 1/2 tsp",
+        "Chocolate Chips - 2 cups"
+      ],
+      "instructions": [
+        "Preheat the oven to 175°C (350°F).",
+        "Cream together the butter, white sugar, and brown sugar until smooth.",
+        "Beat in the eggs one at a time, then stir in vanilla.",
+        "Dissolve baking soda in hot water. Add to batter along with salt.",
+        "Stir in flour and chocolate chips.",
+        "Drop by large spoonfuls onto ungreased baking sheets.",
+        "Bake for about 10 minutes or until edges are nicely browned."
+      ]
+    },
+    {
+      "id": "tomato-soup",
+      "title": "Tomato Soup",
+      "image": "https://cdn.loveandlemons.com/wp-content/uploads/2023/01/tomato-soup-recipe.jpg",
+      "description": "A creamy and rich homemade tomato soup.",
+      "prepTime": "25 mins",
+      "servings": 4,
+      "ingredients": [
+        "Olive Oil - 2 tbsp",
+        "Onion - 1 (diced)",
+        "Garlic - 4 cloves (minced)",
+        "Crushed Tomatoes - 2 cans (400g each)",
+        "Vegetable Broth - 3 cups",
+        "Heavy Cream - 1/2 cup",
+        "Salt - to taste",
+        "Black Pepper - to taste",
+        "Fresh Basil - for garnish"
+      ],
+      "instructions": [
+        "Heat olive oil in a large pot over medium heat.",
+        "Add onions and garlic, sauté until softened, about 5 minutes.",
+        "Stir in crushed tomatoes and vegetable broth.",
+        "Simmer for 15 minutes, stirring occasionally.",
+        "Use an immersion blender to puree the soup until smooth.",
+        "Stir in heavy cream and season with salt and pepper.",
+        "Serve hot with fresh basil as a garnish."
+      ]
+    },
+    {
+      "id": "caesar-salad",
+      "title": "Caesar Salad",
+      "image": "https://www.joyfulhealthyeats.com/wp-content/uploads/2022/04/Classic-Caesar-Salad-with-Homemade-Croutons-web-4.jpg",
+      "description": "A classic Caesar salad with homemade dressing and croutons.",
+      "prepTime": "20 mins",
+      "servings": 4,
+      "ingredients": [
+        "Romaine Lettuce - 1 head (chopped)",
+        "Croutons - 1 cup",
+        "Parmesan Cheese - 1/2 cup (grated)",
+        "Chicken Breast - 2 (optional, grilled)",
+        "Caesar Dressing - 1/2 cup"
+      ],
+      "instructions": [
+        "In a large bowl, combine chopped romaine lettuce, croutons, and Parmesan cheese.",
+        "Drizzle with Caesar dressing and toss to coat.",
+        "If adding grilled chicken, slice it thinly and place on top.",
+        "Serve immediately with extra Parmesan on top."
+      ]
+    },
+    {
+      "id": "pancakes",
+      "title": "Classic Pancakes",
+      "image": "https://brokenovenbaking.com/wp-content/uploads/2023/01/cinnamon-honey-pancakes-8-1.jpg",
+      "description": "Fluffy homemade pancakes perfect for breakfast.",
+      "prepTime": "15 mins",
+      "servings": 4,
+      "ingredients": [
+        "Flour - 1 1/2 cups",
+        "Baking Powder - 1 tbsp",
+        "Salt - 1/2 tsp",
+        "Sugar - 1 tbsp",
+        "Milk - 1 1/4 cups",
+        "Egg - 1",
+        "Butter - 3 tbsp (melted)"
+      ],
+      "instructions": [
+        "In a large bowl, whisk together flour, baking powder, salt, and sugar.",
+        "In another bowl, whisk together milk, egg, and melted butter.",
+        "Pour wet ingredients into dry ingredients and stir until just combined.",
+        "Heat a non-stick skillet over medium heat and grease lightly.",
+        "Pour 1/4 cup of batter for each pancake onto the skillet.",
+        "Cook until bubbles form on the surface, then flip and cook until golden brown on the other side.",
+        "Serve hot with syrup or toppings of choice."
+      ]
+    },
+    {
+      "id": "lasagna",
+      "title": "Lasagna",
+      "image": "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
+      "description": "A hearty and cheesy homemade lasagna.",
+      "prepTime": "1 hour",
+      "servings": 8,
+      "ingredients": [
+        "Lasagna Noodles - 12 (cooked)",
+        "Ground Beef - 500g",
+        "Ricotta Cheese - 2 cups",
+        "Mozzarella Cheese - 2 cups (shredded)",
+        "Parmesan Cheese - 1/2 cup (grated)",
+        "Marinara Sauce - 3 cups",
+        "Egg - 1",
+        "Salt - to taste",
+        "Black Pepper - to taste"
+      ],
+      "instructions": [
+        "Preheat oven to 180°C (350°F).",
+        "In a large skillet, brown the ground beef over medium heat. Drain excess fat.",
+        "In a bowl, combine ricotta cheese, egg, and Parmesan cheese. Season with salt and pepper.",
+        "Spread 1/2 cup of marinara sauce in the bottom of a baking dish.",
+        "Layer lasagna noodles, ricotta mixture, beef, marinara sauce, and mozzarella.",
+        "Repeat the layers, finishing with a layer of sauce and mozzarella cheese on top.",
+        "Cover with foil and bake for 30 minutes.",
+        "Remove foil and bake for another 10 minutes until bubbly and golden.",
+        "Let rest for 10 minutes before serving."
+      ]
+    },
+    {
+      "id": "butter-chicken",
+      "title": "Butter Chicken",
+      "image": "https://www.licious.in/blog/wp-content/uploads/2020/10/butter-chicken-.jpg",
+      "description": "Creamy and flavorful Indian butter chicken.",
+      "prepTime": "45 mins",
+      "servings": 4,
+      "ingredients": [
+        "Chicken Thighs - 500g (cubed)",
+        "Butter - 1/4 cup",
+        "Onion - 1 (chopped)",
+        "Garlic - 4 cloves (minced)",
+        "Ginger - 1 tbsp (minced)",
+        "Tomato Puree - 1 cup",
+        "Heavy Cream - 1/2 cup",
+        "Garam Masala - 1 tsp",
+        "Cumin - 1 tsp",
+        "Coriander - 1 tsp",
+        "Salt - to taste",
+        "Fresh Cilantro - for garnish"
+      ],
+      "instructions": [
+        "Heat butter in a large pan over medium heat.",
+        "Add onions, garlic, and ginger, sauté until softened.",
+        "Stir in tomato puree, garam masala, cumin, and coriander. Cook for 10 minutes.",
+        "Add chicken pieces and cook until no longer pink.",
+        "Stir in heavy cream and simmer for 10 minutes until the sauce thickens.",
+        "Season with salt and garnish with fresh cilantro.",
+        "Serve hot with rice or naan."
+      ]
+    },
+    {
+      "id": "vegetable-soup",
+      "title": "Vegetable Soup",
+      "image": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2023/09/Vegetable-Soup-main.jpg",
+      "description": "A hearty and healthy vegetable soup.",
+      "prepTime": "40 mins",
+      "servings": 6,
+      "ingredients": [
+        "Olive Oil - 2 tbsp",
+        "Onion - 1 (diced)",
+        "Carrot - 2 (sliced)",
+        "Celery - 2 stalks (sliced)",
+        "Garlic - 4 cloves (minced)",
+        "Diced Tomatoes - 1 can (400g)",
+        "Vegetable Broth - 6 cups",
+        "Potato - 1 (diced)",
+        "Green Beans - 1 cup (chopped)",
+        "Spinach - 2 cups",
+        "Salt - to taste",
+        "Black Pepper - to taste"
+      ],
+      "instructions": [
+        "Heat olive oil in a large pot over medium heat.",
+        "Add onions, carrots, celery, and garlic, sauté until softened.",
+        "Stir in diced tomatoes, vegetable broth, potato, and green beans.",
+        "Bring to a boil, then reduce heat and simmer for 25 minutes.",
+        "Stir in spinach and season with salt and pepper.",
+        "Simmer for another 5 minutes until spinach wilts.",
+        "Serve hot with crusty bread."
+      ]
+    },
+    {
+      "id": "beef-stew",
+      "title": "Beef Stew",
+      "image": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2023/09/Beef-Stew-main.jpg",
+      "description": "A rich and hearty beef stew with tender vegetables.",
+      "prepTime": "2 hours",
+      "servings": 6,
+      "ingredients": [
+        "Beef Chuck - 1kg (cubed)",
+        "Flour - 1/4 cup",
+        "Carrot - 3 (sliced)",
+        "Potato - 3 (diced)",
+        "Onion - 2 (chopped)",
+        "Beef Broth - 4 cups",
+        "Tomato Paste - 2 tbsp",
+        "Garlic - 4 cloves (minced)",
+        "Bay Leaf - 2",
+        "Salt - to taste",
+        "Black Pepper - to taste",
+        "Thyme - 1 tsp"
+      ],
+      "instructions": [
+        "Toss beef cubes in flour, shaking off excess.",
+        "In a large pot, brown the beef on all sides.",
+        "Add onions, garlic, and tomato paste, sauté for 5 minutes.",
+        "Stir in beef broth, carrots, potatoes, bay leaves, and thyme.",
+        "Bring to a boil, then reduce heat to low and cover.",
+        "Simmer for 1 1/2 to 2 hours, stirring occasionally, until the beef is tender.",
+        "Remove bay leaves, season with salt and pepper, and serve hot."
+      ]
+    },
+    {
+      "id": "quiche",
+      "title": "Spinach and Cheese Quiche",
+      "image": "https://www.jessicagavin.com/wp-content/uploads/2021/03/ham-and-cheese-quiche-22-1200.jpg",
+      "description": "A delicious spinach and cheese quiche with a buttery crust.",
+      "prepTime": "1 hour",
+      "servings": 8,
+      "ingredients": [
+        "Pie Crust - 1 (store-bought or homemade)",
+        "Fresh Spinach - 3 cups (chopped)",
+        "Eggs - 4",
+        "Heavy Cream - 1 cup",
+        "Milk - 1/2 cup",
+        "Mozzarella Cheese - 1 cup (shredded)",
+        "Parmesan Cheese - 1/4 cup (grated)",
+        "Salt - to taste",
+        "Black Pepper - to taste",
+        "Nutmeg - 1/4 tsp"
+      ],
+      "instructions": [
+        "Preheat oven to 180°C (350°F).",
+        "Roll out the pie crust and place it in a pie dish.",
+        "In a large pan, sauté spinach until wilted. Let it cool slightly.",
+        "In a bowl, whisk together eggs, cream, milk, cheese, salt, pepper, and nutmeg.",
+        "Stir in the spinach and pour the mixture into the pie crust.",
+        "Bake for 35-40 minutes, or until the center is set.",
+        "Let cool for 10 minutes before slicing and serving."
+      ]
+    }
+  ]
+}

@@ -16,7 +16,7 @@ async function fetchRecipes() {
     // Check if the "recipes" key exists and is an array
     if (Array.isArray(data.recipes)) {
       recipes = data.recipes; // Assign the recipes array to the global recipes variable
-      displayRecipeList(); // Display the fetched recipes on the page
+      displayRecipeList(recipes); // Display the fetched recipes on the page
     } else {
       console.error('Unexpected data format:', data);
     }
@@ -25,14 +25,12 @@ async function fetchRecipes() {
   }
 }
 
-
-
 // Display the list of recipes
-function displayRecipeList() {
+function displayRecipeList(recipesToDisplay) {
   const recipeList = document.getElementById('recipe-list');
   recipeList.innerHTML = '';
 
-  recipes.forEach((recipe) => {
+  recipesToDisplay.forEach((recipe) => {
     const recipeCard = document.createElement('article');
     recipeCard.classList.add('recipe-card');
     recipeCard.innerHTML = `
@@ -60,10 +58,21 @@ function displayRecipeList() {
   });
 }
 
+// Filter recipes based on search query
+function filterRecipes(query) {
+  const filteredRecipes = recipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(query.toLowerCase())
+  );
+  displayRecipeList(filteredRecipes); // Update the recipe list with filtered results
+}
+
 // Display detailed view of a recipe
 function displayRecipeDetail(recipeId) {
   const recipe = recipes.find((r) => r.id === recipeId);
   if (!recipe) return;
+
+  // Hide the search bar when viewing a recipe
+  document.getElementById('searchInput').style.display = 'none';
 
   document.getElementById('recipe-list').style.display = 'none'; // Hide recipe list
   const recipeDetail = document.getElementById('recipe-detail');
@@ -168,6 +177,11 @@ document.getElementById('commentForm').addEventListener('submit', (e) => {
   postComment(recipeId, commentData);
 });
 
+// Hook up the search input listener
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  filterRecipes(e.target.value); // Filter recipes as user types
+});
+
 // Initialize the page: fetch recipes and set up event listeners
 window.onload = () => {
   fetchRecipes();
@@ -176,6 +190,9 @@ window.onload = () => {
 
 // Go back to the recipe list view
 function backToRecipeList() {
+  // Show the search bar when going back to the recipe list
+  document.getElementById('searchInput').style.display = 'block';
+
   document.getElementById('recipe-detail').style.display = 'none'; 
   document.getElementById('recipe-list').style.display = 'grid'; 
 }
