@@ -103,6 +103,9 @@ function displayRecipeDetail(recipeId) {
 
   // Fetch and display comments for this recipe
   displayComments(recipeId);
+
+  // Scroll to the top of the page
+  window.scrollTo(0, 0);
 }
 
 // Fetch comments for a recipe
@@ -193,6 +196,6 @@ function backToRecipeList() {
   // Show the search bar when going back to the recipe list
   document.getElementById('searchInput').style.display = 'block';
 
-  document.getElementById('recipe-detail').style.display = 'none'; 
-  document.getElementById('recipe-list').style.display = 'grid'; 
+  document.getElementById('recipe-detail').style.display = 'none';
+  document.getElementById('recipe-list').style.display = 'grid';
 }
