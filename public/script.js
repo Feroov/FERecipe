@@ -119,6 +119,7 @@ async function postComment(recipeId, commentData) {
     });
     if (response.ok) {
       console.log('Comment posted successfully');
+      fetchComments(recipeId); // Refresh the comments after posting
     } else {
       console.error('Failed to post comment');
     }
@@ -128,10 +129,11 @@ async function postComment(recipeId, commentData) {
 }
 
 
+
 // Display comments for the specific recipe
 async function displayComments(recipeId) {
   try {
-    const response = await fetch(`http://${apiBaseUrl}/recipes/${recipeId}/comments`);
+    const response = await fetch(`${apiBaseUrl}/recipes/${recipeId}/comments`);
     const comments = await response.json();
     const commentsSection = document.getElementById('comments');
     commentsSection.innerHTML = ''; // Clear current comments
@@ -157,8 +159,13 @@ async function displayComments(recipeId) {
 
 // Hook up the comment form submission
 document.getElementById('commentForm').addEventListener('submit', (e) => {
+  e.preventDefault(); // Prevent form submission refresh
   const recipeId = document.getElementById('recipeTitle').getAttribute('data-recipe-id');
-  addComment(e, recipeId);
+  const name = document.getElementById('name').value;
+  const commentText = document.getElementById('comment').value;
+
+  const commentData = { name, commentText };
+  postComment(recipeId, commentData);
 });
 
 // Initialize the page: fetch recipes and set up event listeners
