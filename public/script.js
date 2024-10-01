@@ -9,13 +9,23 @@ async function fetchRecipes() {
     if (!response.ok) {
       throw new Error('Failed to load recipe data');
     }
-    recipes = await response.json(); // Assign fetched recipes to the global recipes array
-    console.log(recipes);
-    displayRecipeList(); // Display the fetched recipes on the page
+    
+    // Log the response to check if it is correct
+    const data = await response.json();
+    console.log('Recipes data:', data);
+    
+    // Check if the data is an array before assigning to recipes
+    if (Array.isArray(data)) {
+      recipes = data; // Assign the recipes to the global array
+      displayRecipeList(); // Display the fetched recipes on the page
+    } else {
+      console.error('Unexpected data format:', data);
+    }
   } catch (error) {
     console.error('Error fetching recipes:', error);
   }
 }
+
 
 // Display the list of recipes
 function displayRecipeList() {
