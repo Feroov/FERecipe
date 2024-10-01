@@ -1,21 +1,32 @@
-const recipeUrl = 'recipe.json'; // Path to recipe JSON file
 let recipes = [];
-let commentsStore = {}; // In-memory storage for comments
+const cors = require('cors');
+const app = express();
+
+// Configure CORS to allow requests from your Vercel frontend
+const corsOptions = {
+  origin: 'https://your-vercel-frontend-url.vercel.app',  // Replace with your Vercel frontend URL
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions)); // Apply CORS with these options
 
 // Fetch and display recipes
+const apiBaseUrl = "https://ferecipe.onrender.com";
+
+// Example of fetching recipes or comments
 async function fetchRecipes() {
   try {
-    const response = await fetch(recipeUrl);
+    const response = await fetch(`${apiBaseUrl}/recipes`);
     if (!response.ok) {
       throw new Error('Failed to load recipe data');
     }
     const data = await response.json();
-    recipes = data.recipes;
-    displayRecipeList();
+    console.log(data);
   } catch (error) {
     console.error('Error fetching recipes:', error);
   }
 }
+
 
 // Display the list of recipes
 function displayRecipeList() {
