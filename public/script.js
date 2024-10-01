@@ -1,36 +1,21 @@
 let recipes = [];
 
+const apiBaseUrl = "https://ferecipe.onrender.com"; // Render backend URL
 
-// Fetch and display recipes
-const apiBaseUrl = "https://ferecipe.onrender.com";
-
-
+// Fetch and display recipes from recipe.json served by the backend
 async function fetchRecipes() {
   try {
     const response = await fetch(`${apiBaseUrl}/recipes`);
     if (!response.ok) {
       throw new Error('Failed to load recipe data');
     }
-    const data = await response.json();
-    console.log(data);
+    recipes = await response.json(); // Assign fetched recipes to the global recipes array
+    console.log(recipes);
+    displayRecipeList(); // Display the fetched recipes on the page
   } catch (error) {
     console.error('Error fetching recipes:', error);
   }
 }
-
-async function fetchComments(recipeId) {
-  try {
-    const response = await fetch(`${apiBaseUrl}/recipes/${recipeId}/comments`);
-    if (!response.ok) {
-      throw new Error('Failed to load comments');
-    }
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error('Error fetching comments:', error);
-  }
-}
-
 
 // Display the list of recipes
 function displayRecipeList() {
@@ -101,13 +86,21 @@ function displayRecipeDetail(recipeId) {
   displayComments(recipeId);
 }
 
-// Back to recipe list view
-function backToRecipeList() {
-  document.getElementById('recipe-detail').style.display = 'none'; 
-  document.getElementById('recipe-list').style.display = 'grid'; 
+// Fetch comments for a recipe
+async function fetchComments(recipeId) {
+  try {
+    const response = await fetch(`${apiBaseUrl}/recipes/${recipeId}/comments`);
+    if (!response.ok) {
+      throw new Error('Failed to load comments');
+    }
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+  }
 }
 
-// Add a comment to the in-memory store
+// Post a comment for a recipe
 async function postComment(recipeId, commentData) {
   try {
     const response = await fetch(`${apiBaseUrl}/recipes/${recipeId}/comments`, {
@@ -127,8 +120,6 @@ async function postComment(recipeId, commentData) {
     console.error('Error posting comment:', error);
   }
 }
-
-
 
 // Display comments for the specific recipe
 async function displayComments(recipeId) {
@@ -156,7 +147,6 @@ async function displayComments(recipeId) {
   }
 }
 
-
 // Hook up the comment form submission
 document.getElementById('commentForm').addEventListener('submit', (e) => {
   e.preventDefault(); // Prevent form submission refresh
@@ -173,3 +163,9 @@ window.onload = () => {
   fetchRecipes();
   document.getElementById('back-button').addEventListener('click', backToRecipeList); // Hook up the back button
 };
+
+// Go back to the recipe list view
+function backToRecipeList() {
+  document.getElementById('recipe-detail').style.display = 'none'; 
+  document.getElementById('recipe-list').style.display = 'grid'; 
+}

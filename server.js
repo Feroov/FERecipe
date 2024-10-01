@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+const fs = require('fs');
 const sequelize = require('./config/db');
 const Comment = require('./models/Comment');
 
@@ -20,9 +21,14 @@ sequelize.authenticate()
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.get('/', (req, res) => {
-  res.send('Welcome to the Delicious Recipes API!');
+// Serve the recipe.json file
+app.get('/recipes', (req, res) => {
+  fs.readFile(path.join(__dirname, 'recipe.json'), 'utf-8', (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to load recipe data' });
+    }
+    res.json(JSON.parse(data)); // Send the parsed JSON data
+  });
 });
 
 // POST: Add a comment to a specific recipe
