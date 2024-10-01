@@ -1,19 +1,10 @@
 let recipes = [];
-const cors = require('cors');
-const app = express();
 
-// Configure CORS to allow requests from your Vercel frontend
-const corsOptions = {
-  origin: 'https://your-vercel-frontend-url.vercel.app',  // Replace with your Vercel frontend URL
-  optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions)); // Apply CORS with these options
 
 // Fetch and display recipes
 const apiBaseUrl = "https://ferecipe.onrender.com";
 
-// Example of fetching recipes or comments
+
 async function fetchRecipes() {
   try {
     const response = await fetch(`${apiBaseUrl}/recipes`);
@@ -24,6 +15,19 @@ async function fetchRecipes() {
     console.log(data);
   } catch (error) {
     console.error('Error fetching recipes:', error);
+  }
+}
+
+async function fetchComments(recipeId) {
+  try {
+    const response = await fetch(`${apiBaseUrl}/recipes/${recipeId}/comments`);
+    if (!response.ok) {
+      throw new Error('Failed to load comments');
+    }
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error fetching comments:', error);
   }
 }
 
@@ -99,49 +103,35 @@ function displayRecipeDetail(recipeId) {
 
 // Back to recipe list view
 function backToRecipeList() {
-  document.getElementById('recipe-detail').style.display = 'none'; // Hide recipe detail
-  document.getElementById('recipe-list').style.display = 'grid'; // Show recipe list
+  document.getElementById('recipe-detail').style.display = 'none'; 
+  document.getElementById('recipe-list').style.display = 'grid'; 
 }
 
 // Add a comment to the in-memory store
-async function addComment(e, recipeId) {
-  e.preventDefault();  // Prevent the form from reloading the page
-  const name = document.getElementById('name').value;
-  const commentText = document.getElementById('comment').value;
-
-  if (!name || !commentText) {
-    alert('Please enter both your name and comment.');
-    return;
-  }
-
-  const newComment = { name, commentText };
-
-  // POST the comment to the backend
+async function postComment(recipeId, commentData) {
   try {
-    const response = await fetch(`http://localhost:5000/recipes/${recipeId}/comments`, {
+    const response = await fetch(`${apiBaseUrl}/recipes/${recipeId}/comments`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newComment)
+      body: JSON.stringify(commentData),
     });
     if (response.ok) {
-      document.getElementById('commentForm').reset(); // Reset the form
-      displayComments(recipeId); // Refresh the comments list
+      console.log('Comment posted successfully');
     } else {
-      alert('Failed to submit comment');
+      console.error('Failed to post comment');
     }
   } catch (error) {
-    console.error('Error submitting comment:', error);
+    console.error('Error posting comment:', error);
   }
 }
-
 
 
 // Display comments for the specific recipe
 async function displayComments(recipeId) {
   try {
-    const response = await fetch(`http://localhost:5000/recipes/${recipeId}/comments`);
+    const response = await fetch(`http://${apiBaseUrl}/recipes/${recipeId}/comments`);
     const comments = await response.json();
     const commentsSection = document.getElementById('comments');
     commentsSection.innerHTML = ''; // Clear current comments
