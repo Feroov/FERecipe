@@ -93,8 +93,8 @@ function backToRecipeList() {
 }
 
 // Add a comment to the in-memory store
-function addComment(e, recipeId) {
-  e.preventDefault();
+async function addComment(e, recipeId) {
+  e.preventDefault();  // Prevent the form from reloading the page
   const name = document.getElementById('name').value;
   const commentText = document.getElementById('comment').value;
 
@@ -103,46 +103,56 @@ function addComment(e, recipeId) {
     return;
   }
 
-  // Create a new comment
-  const newComment = {
-    name: name,
-    commentText: commentText,
-    date: new Date().toLocaleDateString(),
-  };
+  const newComment = { name, commentText };
 
-  // Store comment in in-memory storage
-  if (!commentsStore[recipeId]) {
-    commentsStore[recipeId] = [];
+  // POST the comment to the backend
+  try {
+    const response = await fetch(`http://localhost:5000/recipes/${recipeId}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newComment)
+    });
+    if (response.ok) {
+      document.getElementById('commentForm').reset(); // Reset the form
+      displayComments(recipeId); // Refresh the comments list
+    } else {
+      alert('Failed to submit comment');
+    }
+  } catch (error) {
+    console.error('Error submitting comment:', error);
   }
-  commentsStore[recipeId].push(newComment);
-
-  // Display updated comments
-  displayComments(recipeId);
-
-  // Reset form
-  document.getElementById('commentForm').reset();
 }
+
+
 
 // Display comments for the specific recipe
-function displayComments(recipeId) {
-  const commentsSection = document.getElementById('comments');
-  commentsSection.innerHTML = ''; // Clear current comments
-  const comments = commentsStore[recipeId] || [];
+async function displayComments(recipeId) {
+  try {
+    const response = await fetch(`http://localhost:5000/recipes/${recipeId}/comments`);
+    const comments = await response.json();
+    const commentsSection = document.getElementById('comments');
+    commentsSection.innerHTML = ''; // Clear current comments
 
-  if (comments.length === 0) {
-    commentsSection.innerHTML = '<p>No comments yet. Be the first to comment!</p>';
-  } else {
-    comments.forEach((comment) => {
-      const commentElement = document.createElement('div');
-      commentElement.classList.add('comment-item');
-      commentElement.innerHTML = `
-        <p class="comment-author">${comment.name} <span class="comment-date">(${comment.date})</span></p>
-        <p>${comment.commentText}</p>
-      `;
-      commentsSection.appendChild(commentElement);
-    });
+    if (comments.length === 0) {
+      commentsSection.innerHTML = '<p>No comments yet. Be the first to comment!</p>';
+    } else {
+      comments.forEach((comment) => {
+        const commentElement = document.createElement('div');
+        commentElement.classList.add('comment-item');
+        commentElement.innerHTML = `
+          <p class="comment-author">${comment.name} <span class="comment-date">(${new Date(comment.date).toLocaleDateString()})</span></p>
+          <p>${comment.commentText}</p>
+        `;
+        commentsSection.appendChild(commentElement);
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching comments:', error);
   }
 }
+
 
 // Hook up the comment form submission
 document.getElementById('commentForm').addEventListener('submit', (e) => {
