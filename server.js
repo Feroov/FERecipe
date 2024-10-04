@@ -7,7 +7,17 @@ const sequelize = require('./config/db');
 const Comment = require('./models/Comment');
 
 const app = express();
-app.use(cors());
+
+// CORS Configuration
+const corsOptions = {
+  origin: 'https://ferecipe.vercel.app', // Allow requests from your front-end hosted on Vercel
+  optionsSuccessStatus: 200, // For legacy browser support
+};
+
+// Apply CORS middleware with options
+app.use(cors(corsOptions));
+
+// Body parser middleware to handle JSON requests
 app.use(bodyParser.json());
 
 // Test the database connection
@@ -76,7 +86,6 @@ app.delete('/comments/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to delete comment' });
   }
 });
-
 
 // Start the server
 const PORT = process.env.PORT || 5000;
